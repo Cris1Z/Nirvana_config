@@ -1,3 +1,5 @@
+#include <dt-bindings/zmk/matrix_transform.h>
+
 / {
     glidepoint_listener: glidepoint_listener {
         compatible = "zmk,input-listener";
