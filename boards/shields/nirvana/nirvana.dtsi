@@ -3,4 +3,24 @@
         compatible = "zmk,input-listener";
         status = "disabled";
     };
+
+    // 最小化的matrix transform，每边1个按键（共2个按键）
+    // 后续可以扩展到完整的键盘矩阵
+    default_transform: keymap_transform_0 {
+        compatible = "zmk,matrix-transform";
+        columns = <2>;  // 2列（左右各1列）
+        rows = <1>;     // 1行
+        map = <
+            RC(0,0)  // 左边的按键
+            RC(0,1)  // 右边的按键
+        >;
+    };
+
+    // 最小化的kscan配置（用于测试）
+    // 注意：实际的GPIO引脚需要在各自的overlay文件中配置
+    kscan0: kscan {
+        compatible = "zmk,kscan-gpio-matrix";
+        diode-direction = "col2row";
+        wakeup-source;
+    };
 };

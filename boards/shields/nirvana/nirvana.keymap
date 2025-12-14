@@ -1,1 +1,54 @@
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+
+/ {
+    keymap {
+        compatible = "zmk,keymap";
+
+        // 默认层 - 每边一个测试按键
+        default_layer {
+            bindings = <
+                &kp A    // 左边的按键绑定到 'A'
+                &kp B    // 右边的按键绑定到 'B'
+            >;
+        };
+    };
+};
+
+/* 
+ * 后续扩展说明：
+ * 
+ * 当你准备添加完整的键盘矩阵时：
+ * 
+ * 1. 在 nirvana.dtsi 中修改 default_transform：
+ *    - 更新 columns 和 rows 的数量
+ *    - 在 map 中添加所有按键位置，如 RC(0,0) RC(0,1) RC(0,2) ...
+ * 
+ * 2. 在 nirvana_left.overlay 和 nirvana_right.overlay 中：
+ *    - 在 col-gpios 中添加所有列引脚
+ *    - 在 row-gpios 中添加所有行引脚
+ * 
+ * 3. 在 nirvana.keymap 中：
+ *    - 在 bindings 中添加所有按键的绑定
+ *    - 可以添加更多层（layer）
+ * 
+ * 示例（假设有3列2行的矩阵）：
+ * 
+ * default_transform: keymap_transform_0 {
+ *     compatible = "zmk,matrix-transform";
+ *     columns = <6>;  // 分体键盘：左边3列 + 右边3列
+ *     rows = <2>;
+ *     map = <
+ *         RC(0,0) RC(0,1) RC(0,2)    // 左边第1行
+ *         RC(0,3) RC(0,4) RC(0,5)    // 右边第1行
+ *         RC(1,0) RC(1,1) RC(1,2)    // 左边第2行
+ *         RC(1,3) RC(1,4) RC(1,5)    // 右边第2行
+ *     >;
+ * };
+ * 
+ * bindings = <
+ *     &kp Q &kp W &kp E    &kp R &kp T &kp Y
+ *     &kp A &kp S &kp D    &kp F &kp G &kp H
+ * >;
+ */
 
