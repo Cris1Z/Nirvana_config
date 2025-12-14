@@ -1,3 +1,5 @@
+#include "nirvana.dtsi"
+
 &pro_micro_spi {
     status = "okay";
     cs-gpios = <&pro_micro 19 GPIO_ACTIVE_LOW>;
