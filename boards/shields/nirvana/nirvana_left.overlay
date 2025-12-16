@@ -21,15 +21,17 @@
 &glidepoint_listener {
     status = "okay";
     device = <&glidepoint>;
+    input-processors = <&zip_xy_scaler 1 1>;
 };
 
 // 配置左边的kscan GPIO（1个按键用于测试）
 // 根据你的实际硬件接线修改这些引脚
 &kscan0 {
+    diode-direction = "row2col";
     col-gpios
-        = <&pro_micro 21 GPIO_ACTIVE_HIGH>  // 左边的列引脚（示例：D21）
+        = <&pro_micro 21 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
         ;
     row-gpios
-        = <&pro_micro 4 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // 行引脚（示例：D4）
+        = <&pro_micro 4 GPIO_ACTIVE_HIGH> 
         ;
 };
