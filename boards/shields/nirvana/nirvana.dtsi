@@ -1,6 +1,5 @@
 #include <dt-bindings/zmk/matrix_transform.h>
 #include "nirvana-layouts.dtsi"
-#include <dt-bindings/zmk/input_transform.h>
 
 &physical_layout0 {
     transform = <&default_transform>;
