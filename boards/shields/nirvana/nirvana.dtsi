@@ -28,11 +28,16 @@
 
     // 最小化的kscan配置（用于测试）
     // 注意：实际的GPIO引脚需要在各自的overlay文件中配置
-    kscan0: kscan {
-		compatible = "zmk,kscan-gpio-matrix";
-		label = "KSCAN";
-	};
 
+	kscan0: kscan {
+        compatible = "zmk,kscan-gpio-matrix";
+        wakeup-source;
+
+        diode-direction = "col2row";
+        row-gpios
+            = <&pro_micro 4 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            ;
+    };
     
 };
 
