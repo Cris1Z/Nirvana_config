@@ -8,8 +8,7 @@
         // 默认层 - 每边一个测试按键
         default_layer {
             bindings = <
-                &kp A    // 左边的按键绑定到 'A'
-                &kp B    // 右边的按键绑定到 'B'
+                &kp A    &kp B    
             >;
         };
     };
