@@ -14,8 +14,9 @@
         status = "okay";
         dr-gpios = <&pro_micro 5 (GPIO_ACTIVE_HIGH)>;
 
-        sensitivity = "1x";
+        sensitivity = "2x";
         sleep;
+        x-invert;
         //no-taps;
     };
 };
