@@ -1,5 +1,9 @@
 #include "nirvana.dtsi"
 
+&default_transform {
+    col-offset = <1>;
+};
+
 // 配置右边的kscan GPIO（1个按键用于测试）
 // 根据你的实际硬件接线修改这些引脚
 &kscan0 {
