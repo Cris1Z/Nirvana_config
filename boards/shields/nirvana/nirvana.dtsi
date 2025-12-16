@@ -6,21 +6,6 @@
         status = "disabled";
     };
 
-
-    physical_layout0: physical_layout_0 {
-        compatible = "zmk,physical-layout";
-        display-name = "Default Layout";
-        transform = <&default_transform>;
-        kscan = <&kscan0>;
-    };
-    
-    chosen {
-        zmk,kscan = &kscan0;
-        zmk,matrix-transform = &default_transform;
-        // 添加这一行，指定默认的物理布局
-        zmk,physical-layout = &physical_layout0;
-    };
-
     // 最小化的matrix transform，每边1个按键（共2个按键）
     // 后续可以扩展到完整的键盘矩阵
     default_transform: keymap_transform_0 {
@@ -36,8 +21,12 @@
     // 最小化的kscan配置（用于测试）
     // 注意：实际的GPIO引脚需要在各自的overlay文件中配置
     kscan0: kscan {
-        compatible = "zmk,kscan-gpio-matrix";
-        diode-direction = "col2row";
-        wakeup-source;
+		compatible = "zmk,kscan-gpio-matrix";
+		label = "KSCAN";
+	};
+
+    &physical_layout0 {
+        kscan = <&kscan0>;
+        transform = <&default_transform>;
     };
 };
