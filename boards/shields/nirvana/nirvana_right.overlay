@@ -2,21 +2,43 @@
 #include <dt-bindings/zmk/input_transform.h>
 #include <input/processors.dtsi>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
+#include <dt-bindings/pinctrl/nrf-pinctrl.h>
 
 &default_transform {
-    col-offset = <1>;
+    col-offset = <6>;
+};
+
+// 将 SPI 总线引脚重映射到 pro_micro 4/5/6
+// nice!nano v2 外部 SPI 通常为 spi1；若编译报错请改为 spi0_default/spi0_sleep
+&spi1_default {
+    /delete-node/ group1;
+    group1 {
+        psels = <NRF_PSEL(SPIM_SCK,  0, 20)>,  // pro_micro 4 = P0.20 = SCLK
+                <NRF_PSEL(SPIM_MISO, 0, 22)>,  // pro_micro 5 = P0.22 = MISO
+                <NRF_PSEL(SPIM_MOSI, 0, 24)>;  // pro_micro 6 = P0.24 = MOSI
+    };
+};
+
+&spi1_sleep {
+    /delete-node/ group1;
+    group1 {
+        psels = <NRF_PSEL(SPIM_SCK,  0, 20)>,
+                <NRF_PSEL(SPIM_MISO, 0, 22)>,
+                <NRF_PSEL(SPIM_MOSI, 0, 24)>;
+        low-power-enable;
+    };
 };
 
 &pro_micro_spi {
     status = "okay";
-    cs-gpios = <&pro_micro 19 GPIO_ACTIVE_LOW>;
+    cs-gpios = <&pro_micro 8 GPIO_ACTIVE_LOW>;  // pro_micro 8 = P0.11 = CS
 
     glidepoint: glidepoint@0 {
         compatible = "cirque,pinnacle";
         reg = <0>;
         spi-max-frequency = <1000000>;
         status = "okay";
-        dr-gpios = <&pro_micro 5 (GPIO_ACTIVE_HIGH)>;
+        dr-gpios = <&pro_micro 7 (GPIO_ACTIVE_HIGH)>;  // pro_micro 7 = P1.00 = DR
 
         sensitivity = "2x";
         sleep;
@@ -25,17 +47,29 @@
     };
 };
 
-// Overrides for the input listener node
 &glidepoint_listener {
     status = "okay";
     device = <&glidepoint>;
     input-processors = <&zip_xy_scaler 1 1>;
 };
 
-// 配置右边的kscan GPIO
-// 根据你的实际硬件接线修改这些引脚
 &kscan0 {
+    // col 6–11（右半 6 列）
     col-gpios
-        = <&pro_micro 20 GPIO_ACTIVE_HIGH>
+        = <&pro_micro 21 GPIO_ACTIVE_HIGH>  // col 6
+        , <&pro_micro 20 GPIO_ACTIVE_HIGH>  // col 7
+        , <&pro_micro 19 GPIO_ACTIVE_HIGH>  // col 8
+        , <&pro_micro 18 GPIO_ACTIVE_HIGH>  // col 9
+        , <&pro_micro 15 GPIO_ACTIVE_HIGH>  // col 10
+        , <&pro_micro 14 GPIO_ACTIVE_HIGH>  // col 11
+        ;
+    // row 0–5（右半）
+    row-gpios
+        = <&pro_micro 16 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // row 0
+        , <&pro_micro 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // row 1
+        , <&gpio1 7      (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // row 2 = P1.07
+        , <&gpio1 2      (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // row 3 = P1.02
+        , <&gpio1 1      (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // row 4 = P1.01
+        , <&pro_micro 9  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // row 5
         ;
 };

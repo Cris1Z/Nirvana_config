@@ -5,10 +5,21 @@
     keymap {
         compatible = "zmk,keymap";
 
-        // 默认层 - 每边一个测试按键
         default_layer {
             bindings = <
-                &kp A    &kp B    
+// 左半                                              右半
+&trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans                                   &trans &trans &trans &trans
+            >;
+            sensor-bindings = <
+                &inc_dec_kp C_VOL_UP C_VOL_DN  /* 右半 encoder0 - 音量 */
+                &inc_dec_kp PG_UP PG_DN         /* 右半 encoder1 - 翻页 */
+                &inc_dec_kp C_VOL_UP C_VOL_DN  /* 左半 encoder0 - 音量 */
+                &inc_dec_kp PG_UP PG_DN         /* 左半 encoder1 - 翻页 */
             >;
         };
     };
