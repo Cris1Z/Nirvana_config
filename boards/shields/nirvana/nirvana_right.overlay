@@ -2,8 +2,6 @@
 #include <dt-bindings/zmk/input_transform.h>
 #include <input/processors.dtsi>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
-#include <dt-bindings/pinctrl/nrf-pinctrl.h>
-
 &default_transform {
     col-offset = <6>;
 };
@@ -11,14 +9,14 @@
 
 &pro_micro_spi {
     status = "okay";
-    cs-gpios = <&pro_micro 8 GPIO_ACTIVE_LOW>;  // pro_micro 8 = P0.11 = CS
+    cs-gpios = <&pro_micro 8 GPIO_ACTIVE_LOW>;  // pro_micro 8 = P1.04 = CS
 
     glidepoint: glidepoint@0 {
         compatible = "cirque,pinnacle";
         reg = <0>;
         spi-max-frequency = <1000000>;
         status = "okay";
-        dr-gpios = <&pro_micro 7 (GPIO_ACTIVE_HIGH)>;  // pro_micro 7 = P1.00 = DR
+        dr-gpios = <&pro_micro 7 (GPIO_ACTIVE_HIGH)>;  // pro_micro 7 = P0.11 = DR
 
         sensitivity = "2x";
         sleep;
