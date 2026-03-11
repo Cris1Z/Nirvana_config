@@ -64,6 +64,6 @@
 // 根据你的实际硬件接线修改这些引脚
 &kscan0 {
     col-gpios
-        = <&pro_micro 0 GPIO_ACTIVE_HIGH>
+        = <&pro_micro 20 GPIO_ACTIVE_HIGH>
         ;
 };
