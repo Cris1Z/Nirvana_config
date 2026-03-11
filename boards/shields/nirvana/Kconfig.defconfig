@@ -16,9 +16,6 @@ config ZMK_POINTING
 config SPI
     default y
 
-config ZMK_BLE_EXPERIMENTAL_CONN
-    default y
-
 endif
 
 
