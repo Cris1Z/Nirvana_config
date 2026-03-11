@@ -1,5 +1,6 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
 
 / {
     keymap {
@@ -8,7 +9,7 @@
         // 默认层 - 每边一个测试按键
         default_layer {
             bindings = <
-                &kp A    &kp B    
+                &kp A    &bt BT_CLR_ALL   
             >;
         };
     };
