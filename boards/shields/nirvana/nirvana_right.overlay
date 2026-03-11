@@ -38,7 +38,7 @@
 
     status = "okay";
 
-    cs-gpios = <&pro_micro 19 GPIO_ACTIVE_LOW>;
+    cs-gpios = <&pro_micro 8 GPIO_ACTIVE_LOW>;
     glidepoint: glidepoint@0 {
         compatible = "cirque,pinnacle";
         reg = <0>;
