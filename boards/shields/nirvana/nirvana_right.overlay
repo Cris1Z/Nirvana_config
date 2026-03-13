@@ -53,12 +53,17 @@
     };
 };
 
-// Overrides for the input listener node
-&glidepoint_listener {
-    status = "okay";
+&glidepoint_split {
     device = <&glidepoint>;
-    input-processors = <&zip_xy_scaler 3 2>;
 };
+
+// Overrides for the input listener node
+
+//&glidepoint_listener {
+//    status = "okay";
+//    device = <&glidepoint>;
+//    input-processors = <&zip_xy_scaler 3 2>;
+//};
 
 // 配置右边的kscan GPIO
 // 根据你的实际硬件接线修改这些引脚
