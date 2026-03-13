@@ -7,13 +7,15 @@ config ZMK_KEYBOARD_NAME
 config ZMK_SPLIT_ROLE_CENTRAL
     default y
 
+endif
 
-# Other settings
+
+if SHIELD_NIRVANA_LEFT || SHIELD_NIRVANA_RIGHT
+
+config ZMK_SPLIT
+    default y
 
 config ZMK_POINTING
-    default y
-# Assuming pointing device uses SPI
-config SPI
     default y
 
 config ZMK_BLE_EXPERIMENTAL_CONN
@@ -22,13 +24,5 @@ config ZMK_BLE_MOUSE_REPORT_QUEUE_SIZE
     default 1
 config BT_PERIPHERAL_PREF_MAX_INT
     default 8
-
-endif
-
-
-if SHIELD_NIRVANA_LEFT || SHIELD_NIRVANA_RIGHT
-
-config ZMK_SPLIT
-    default y
 
 endif
