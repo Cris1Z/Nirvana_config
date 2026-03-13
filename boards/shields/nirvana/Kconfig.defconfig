@@ -18,6 +18,8 @@ config SPI
 
 config ZMK_BLE_EXPERIMENTAL_CONN
     default y
+config ZMK_BLE_MOUSE_REPORT_QUEUE_SIZE
+    default 1
 
 endif
 
