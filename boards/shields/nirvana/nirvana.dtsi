@@ -37,7 +37,7 @@
     
     left1_encoder: left1_encoder {
         compatible = "alps,ec11";
-        steps = <24>;
+        steps = <12>;
         status = "disabled";
     };
 
