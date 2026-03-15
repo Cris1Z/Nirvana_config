@@ -11,8 +11,7 @@
             bindings = <
                 &kp A    &bt BT_CLR_ALL   
             >;
-            
-        sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
     };
 };
