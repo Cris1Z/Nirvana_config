@@ -9,6 +9,9 @@
     input-processors = <&zip_xy_scaler 3 2>;
 };
 
+&left_encoder {
+    status = "okay";
+};
 
 // 配置左边的kscan GPIO
 // 根据你的实际硬件接线修改这些引脚

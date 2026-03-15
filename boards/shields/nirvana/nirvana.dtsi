@@ -35,6 +35,20 @@
         device = <&glidepoint_split>;
     };
     
+    left1_encoder: left1_encoder {
+        compatible = "alps,ec11";
+        a-gpios = <pro_micro 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        b-gpios = <pro_micro 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        steps = <12>;
+        status = "disabled";
+    };
+
+    sensors: sensors {
+        compatible = "zmk,keymap-sensors";
+        sensors = <&left1_encoder>;
+        triggers-per-rotation = <12>;
+    };
+
     // 最小化的matrix transform，每边1个按键（共2个按键）
     // 后续可以扩展到完整的键盘矩阵
     default_transform: keymap_transform_0 {
@@ -55,7 +69,7 @@
 
         diode-direction = "col2row";
         row-gpios
-            = <&pro_micro 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            = <&pro_micro 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
             ;
     };
     
