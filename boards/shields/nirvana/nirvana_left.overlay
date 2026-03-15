@@ -9,7 +9,7 @@
     input-processors = <&zip_xy_scaler 3 2>;
 };
 
-&left_encoder {
+&left1_encoder {
     status = "okay";
 };
 
